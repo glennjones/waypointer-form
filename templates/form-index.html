@@ -1,0 +1,283 @@
+<html>
+
+<head>
+    <title>{{{info.title}}}</title>
+
+    {{#each theme.cssLinks}}
+         <link href="{{this}}" rel="stylesheet" />
+    {{/each}}
+
+    {{#each theme.jsLinks}}
+         <script src="{{this}}"></script>
+    {{/each}}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+
+    <div id="wrap">
+
+
+        <header id="header">
+            <h1>{{{info.title}}} <span class="version">v{{info.version}}</span></h1>
+            <p>{{{info.description}}}</p>
+        </header>
+
+
+        <nav id="menu">
+            <ul>
+                {{#if text.before}}
+                    {{#each text.before}}
+                        <li><a href="#{{id}}">{{name}}</a></li>
+                    {{/each}}
+                {{/if}}
+
+                {{#each groups}}
+                    <li><a href="#group-{{name}}">{{name}}</a>
+                        <ul>
+                        {{#each endpoints}}
+                            <li><a href="#{{id}}">{{summary}}</a></li>
+                        {{/each}}
+                        </ul>
+                    </li>
+                {{/each}}
+
+                {{#if text.after}}
+                    {{#each text.after}}
+                        <li><a href="#{{id}}">{{name}}</a></li>
+                    {{/each}}
+                {{/if}}
+        </ul>
+        </nav>
+
+
+        <section id="content">
+            {{#if text.before}}
+                <section class="group">
+                    {{#each text.before}}
+                        <section id="{{id}}" class="group-item before {{class}}">
+                                <h1>{{name}}</h1>
+                                <div>{{{html}}}</div>
+                        </section>
+                    {{/each}}
+                </section>
+            {{/if}}
+
+
+
+            {{#each groups}}
+                <section class="group" id="group-{{name}}">
+                <h1>{{name}}</h1>
+                <p>{{description}}</p>
+
+                {{#each text.before}}
+                    <div class="before {{class}}">{{{html}}}</div>
+                {{/each}}
+
+
+                {{#each endpoints}}
+
+                    <section id="{{id}}" class="group-item endpoint">
+
+                    <h2>{{summary}}</h2>
+                    <p>{{description}}</p>
+
+                    {{#each text.before}}
+                        <div class="before {{class}}">{{{html}}}</div>
+                    {{/each}}
+
+                    <pre><code class="curl">{{this.method}} {{this.path}}</code></pre>
+
+                    {{> form-form basePath=../../basePath host=../../host }}
+
+
+                    {{#if parameters.header}}
+                        <h3>Headers parameters</h3>
+                        <table class="parameter-table pure-table pure-table-bordered">
+                            {{> form-tablehead }}
+                        <tbody>
+                            {{> form-tablerow }}
+                        </tbody>
+                        </table>
+                    {{/if}}
+
+                    {{#if parameters.query}}
+                        <h3>Querystring parameters</h3>
+                        <table class="parameter-table pure-table pure-table-bordered">
+                            {{> form-tablehead }}
+                        <tbody>
+                            {{#each parameters.query}}
+                                {{> form-tablerow }}
+                            {{/each}}
+                        </tbody>
+                        </table>
+                    {{/if}}
+
+                    {{#if parameters.path}}
+                        <h3>Path parameters</h3>
+                        <table class="parameter-table pure-table pure-table-bordered">
+                            {{> form-tablehead }}
+                        <tbody>
+                            {{#each parameters.path}}
+                                {{> form-tablerow }}
+                            {{/each}}
+                        </tbody>
+                        </table>
+                    {{/if}}
+
+                    {{#if parameters.form}}
+                        <h3>Form parameters</h3>
+                        <table class="parameter-table pure-table pure-table-bordered">
+                            {{> form-tablehead }}
+                        <tbody>
+                            {{#each parameters.form}}
+                                {{> form-tablerow }}
+                            {{/each}}
+                        </tbody>
+                        </table>
+                    {{/if}}
+
+
+                    {{#if parameters.body}}
+                        <h3>Body parameters</h3>
+                        <table class="parameter-table pure-table pure-table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Example</th>
+                                </tr>
+                            </thead>
+                        <tbody>
+                                <tr>
+                                    <td>body</td>
+                                    <td>
+                                        {{#if parameters.body.examples}}
+                                            {{#each parameters.body.examples}}
+                                                <div>{{name}}</div>
+                                                <pre><code class="{{format}}">{{data}}</code></pre>
+                                            {{/each}}
+                                        {{/if}}
+                                    </td>
+                                </tr>
+                        </tbody>
+                        </table>
+                    {{/if}}
+
+
+                    {{#if responses.success}}
+                        {{#each responses.success}}
+
+                            <!--
+                            <code>{{statusCode}}</code> {{description}}
+                            {{#if schema}}
+                                <pre><code class="json">{{{schema}}}</code></pre>
+                            {{/if}}
+                            -->
+
+                            {{#if examples}}
+
+                                <h3>Response: <code>{{statusCode}}</code></h3>
+
+
+                                <div class="tabs">
+                                {{#each examples}}
+                                    <input id="tab-{{../../id}}-{{name}}-response" type="radio" name="grp-{{../../id}}-response" {{#compare @index "===" 0}}checked="checked"{{/compare}}/>
+                                    <label for="tab-{{../../id}}-{{name}}-response">{{name}}</label>
+                                    <div>
+                                        <pre><code class="{{format}}">{{data}}</code></pre>
+                                    </div>
+                                {{/each}}
+                                </div>
+                            {{/if}}
+
+                        {{/each}}
+                    {{/if}}
+
+
+                    {{#if responses.errors}}
+                        <h3>Possible error responses</h3>
+                        <table class="parameter-table pure-table pure-table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Status code</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                        <tbody>
+                            {{#each responses.errors}}
+                                <tr>
+                                    <td><code>{{statusCode}}</code></td>
+                                    <td>{{description}}</td>
+                                </tr>
+                            {{/each}}
+                        </tbody>
+                        </table>
+                    {{/if}}
+
+
+
+
+                    {{#if code}}
+                        <h3>Example code snippet to make API request:</h3>
+                        <!--
+                        {{#each code}}
+                            <h3>{{name}}</h3>
+                            <pre><code class="{{format}}">{{{snippet}}}</code></pre>
+                        {{/each}}
+                        -->
+
+                        <div class="tabs">
+                        {{#each code}}
+                            <input id="tab-{{../id}}-{{name}}-code" type="radio" name="grp-{{../id}}-code" {{#compare @index "===" 0}}checked="checked"{{/compare}}/>
+                            <label for="tab-{{../id}}-{{name}}-code">{{name}}</label>
+                            <div>
+                                <pre><code class="{{format}}">{{snippet}}</code></pre>
+                            </div>
+                        {{/each}}
+                        </div>
+
+                    {{/if}}
+
+
+                    {{#each text.after}}
+                        <div class="after {{class}}">{{{html}}}</div>
+                    {{/each}}
+
+                    </section>
+                {{/each}}
+
+                    {{#each text.after}}
+                        <div class="after {{class}}">{{{html}}}</div>
+                    {{/each}}
+
+                </section>
+            {{/each}}
+
+                {{#if text.after}}
+                    <section class="group">
+                        {{#each text.after}}
+                            <section id="{{id}}" class="after {{class}}">
+                                    <h1>{{name}}</h1>
+                                    <div>{{{html}}}</div>
+                            </section>
+                        {{/each}}
+                    </section>
+                {{/if}}
+
+
+            </section>
+
+            <footer>
+               Theme: {{#if theme.url}}<a href="{{theme.url}}">{{/if}}{{theme.name}}{{#if theme.url}}</a>{{/if}}
+               {{#if theme.license}} &dash; License: {{theme.license}}{{/if}}
+            </footer>
+
+
+        </div>
+    </boby>
+
+</html>
+
+

@@ -1,0 +1,1027 @@
+{
+    "waypointer": "1.0.0",
+    "schemes": [
+        "http"
+    ],
+    "host": "localhost:3016",
+    "basePath": "/v1",
+    "info": {
+        "title": "Test <strong>API</strong> Documentation",
+        "description": "This is a sample example of <code>API</code> documentation.",
+        "version": "1.0.0",
+        "termsOfService": "https://github.com/glennjones/hapi-swagger/",
+        "contact": {
+            "email": "glennjonesnet@gmail.com"
+        },
+        "license": {
+            "name": "MIT",
+            "url": "https://raw.githubusercontent.com/glennjones/hapi-swagger/master/license.txt"
+        }
+    },
+    "security": [
+        {
+            "Bearer": []
+        }
+    ],
+    "securityDefinitions": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "groups": [
+        {
+            "name": "Sum",
+            "description": "An API for working with maths. Provides add, divide, mulitple and subtract endpoints which calulate your sums.",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "http://example.org"
+            },
+            "endpoints": [
+                {
+                    "path": "/sum/add/{a}/{b}",
+                    "method": "put",
+                    "code": [
+                        {
+                            "name": "JavaScript",
+                            "format": "javascript",
+                            "snippet": "var data = null;\n\nvar xhr = new XMLHttpRequest();\nxhr.withCredentials = true;\n\nxhr.addEventListener(\"readystatechange\", function () {\n  if (this.readyState === this.DONE) {\n    console.log(this.responseText);\n  }\n});\n\nxhr.open(\"PUT\", \"http://localhost:3007/v1/sum/add/5/5\");\n\nxhr.send(data);"
+                        },
+                        {
+                            "name": "Node.js",
+                            "format": "node",
+                            "snippet": "var http = require(\"http\");\n\nvar options = {\n  \"method\": \"PUT\",\n  \"hostname\": \"localhost\",\n  \"port\": \"3007\",\n  \"path\": \"/v1/sum/add/5/5\",\n  \"headers\": {}\n};\n\nvar req = http.request(options, function (res) {\n  var chunks = [];\n\n  res.on(\"data\", function (chunk) {\n    chunks.push(chunk);\n  });\n\n  res.on(\"end\", function () {\n    var body = Buffer.concat(chunks);\n    console.log(body.toString());\n  });\n});\n\nreq.end();"
+                        },
+                        {
+                            "name": "Shell",
+                            "format": "shell",
+                            "snippet": "curl --request PUT \\\n  --url http://localhost:3007/v1/sum/add/5/5"
+                        }
+                    ],
+                    "summary": "Add",
+                    "description": "Adds together two numbers and return the result. As an option you can have the result return as a binary number.",
+                    "consumes": [
+                        "application/json",
+                        "application/xml"
+                    ],
+                    "tags": [
+                        "sum"
+                    ],
+                    "id": "putv1sumaddab",
+                    "parameters": {
+                        "path": [
+                            {
+                                "description": "the first number",
+                                "type": "number",
+                                "required": true,
+                                "name": "a",
+                                "example": "5"
+                            },
+                            {
+                                "description": "the second number",
+                                "type": "number",
+                                "required": true,
+                                "name": "b",
+                                "example": "5"
+                            }
+                        ]
+                    },
+                    "responses": {
+                        "success": [
+                            {
+                                "statusCode": 200,
+                                "description": "Successful"
+                            }
+                        ]
+                    },
+                    "text": {
+                        "after": [
+                            {
+                                "html": "<h2 id=\"notes\">Notes</h2>\n<p> <strong>Some notes about</strong></p>\n",
+                                "class": "notes"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "path": "/sum/divide/{a}/{b}",
+                    "method": "put",
+                    "code": [
+                        {
+                            "name": "JavaScript",
+                            "format": "javascript",
+                            "snippet": "var data = null;\n\nvar xhr = new XMLHttpRequest();\nxhr.withCredentials = true;\n\nxhr.addEventListener(\"readystatechange\", function () {\n  if (this.readyState === this.DONE) {\n    console.log(this.responseText);\n  }\n});\n\nxhr.open(\"PUT\", \"http://localhost:3007/v1/sum/divide/5/5\");\n\nxhr.send(data);"
+                        },
+                        {
+                            "name": "Node.js",
+                            "format": "node",
+                            "snippet": "var http = require(\"http\");\n\nvar options = {\n  \"method\": \"PUT\",\n  \"hostname\": \"localhost\",\n  \"port\": \"3007\",\n  \"path\": \"/v1/sum/divide/5/5\",\n  \"headers\": {}\n};\n\nvar req = http.request(options, function (res) {\n  var chunks = [];\n\n  res.on(\"data\", function (chunk) {\n    chunks.push(chunk);\n  });\n\n  res.on(\"end\", function () {\n    var body = Buffer.concat(chunks);\n    console.log(body.toString());\n  });\n});\n\nreq.end();"
+                        },
+                        {
+                            "name": "Shell",
+                            "format": "shell",
+                            "snippet": "curl --request PUT \\\n  --url http://localhost:3007/v1/sum/divide/5/5"
+                        }
+                    ],
+                    "summary": "Divide",
+                    "description": "Divides the first number by the second and return the result",
+                    "tags": [
+                        "sum"
+                    ],
+                    "x-order": 3,
+                    "id": "putv1sumdivideab",
+                    "parameters": {
+                        "path": [
+                            {
+                                "description": "the first number - can NOT be 0",
+                                "type": "number",
+                                "required": true,
+                                "name": "a",
+                                "example": "5"
+                            },
+                            {
+                                "description": "the second number - can NOT be 0",
+                                "type": "number",
+                                "required": true,
+                                "name": "b",
+                                "example": "5"
+                            }
+                        ]
+                    },
+                    "responses": {
+                        "success": [
+                            {
+                                "statusCode": 200,
+                                "description": "Success",
+                                "schema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"equals\": {\n      \"type\": \"number\"\n    }\n  }\n}",
+                                "examples": [
+                                    {
+                                        "name": "JSON",
+                                        "mimeType": "application/json",
+                                        "data": "{\n  \"equals\": 0\n}"
+                                    }
+                                ]
+                            }
+                        ],
+                        "errors": [
+                            {
+                                "statusCode": 400,
+                                "description": "Bad Request"
+                            },
+                            {
+                                "statusCode": 404,
+                                "description": "Sum not found"
+                            },
+                            {
+                                "statusCode": 500,
+                                "description": "Internal Server Error"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "path": "/sum/multiple/{a}/{b}",
+                    "method": "put",
+                    "code": [
+                        {
+                            "name": "JavaScript",
+                            "format": "javascript",
+                            "snippet": "var data = null;\n\nvar xhr = new XMLHttpRequest();\nxhr.withCredentials = true;\n\nxhr.addEventListener(\"readystatechange\", function () {\n  if (this.readyState === this.DONE) {\n    console.log(this.responseText);\n  }\n});\n\nxhr.open(\"PUT\", \"http://localhost:3007/v1/sum/multiple/5/5\");\n\nxhr.send(data);"
+                        },
+                        {
+                            "name": "Node.js",
+                            "format": "node",
+                            "snippet": "var http = require(\"http\");\n\nvar options = {\n  \"method\": \"PUT\",\n  \"hostname\": \"localhost\",\n  \"port\": \"3007\",\n  \"path\": \"/v1/sum/multiple/5/5\",\n  \"headers\": {}\n};\n\nvar req = http.request(options, function (res) {\n  var chunks = [];\n\n  res.on(\"data\", function (chunk) {\n    chunks.push(chunk);\n  });\n\n  res.on(\"end\", function () {\n    var body = Buffer.concat(chunks);\n    console.log(body.toString());\n  });\n});\n\nreq.end();"
+                        },
+                        {
+                            "name": "Shell",
+                            "format": "shell",
+                            "snippet": "curl --request PUT \\\n  --url http://localhost:3007/v1/sum/multiple/5/5"
+                        }
+                    ],
+                    "summary": "Multiple",
+                    "description": "Multiples the two numbers together and return the result",
+                    "tags": [
+                        "sum"
+                    ],
+                    "x-order": 2,
+                    "id": "putv1summultipleab",
+                    "parameters": {
+                        "path": [
+                            {
+                                "description": "the first number",
+                                "type": "number",
+                                "required": true,
+                                "name": "a",
+                                "example": "5"
+                            },
+                            {
+                                "description": "the second number",
+                                "type": "number",
+                                "required": true,
+                                "name": "b",
+                                "example": "5"
+                            }
+                        ]
+                    },
+                    "responses": {
+                        "success": [
+                            {
+                                "statusCode": 200,
+                                "description": "Success",
+                                "schema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"equals\": {\n      \"type\": \"number\"\n    }\n  }\n}",
+                                "examples": [
+                                    {
+                                        "name": "JSON",
+                                        "mimeType": "application/json",
+                                        "data": "{\n  \"equals\": 0\n}"
+                                    }
+                                ]
+                            }
+                        ],
+                        "errors": [
+                            {
+                                "statusCode": 400,
+                                "description": "Bad Request"
+                            },
+                            {
+                                "statusCode": 404,
+                                "description": "Sum not found"
+                            },
+                            {
+                                "statusCode": 500,
+                                "description": "Internal Server Error"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "path": "/sum/subtract/{a}/{b}",
+                    "method": "put",
+                    "code": [
+                        {
+                            "name": "JavaScript",
+                            "format": "javascript",
+                            "snippet": "var data = null;\n\nvar xhr = new XMLHttpRequest();\nxhr.withCredentials = true;\n\nxhr.addEventListener(\"readystatechange\", function () {\n  if (this.readyState === this.DONE) {\n    console.log(this.responseText);\n  }\n});\n\nxhr.open(\"PUT\", \"http://localhost:3007/v1/sum/subtract/5/5\");\n\nxhr.send(data);"
+                        },
+                        {
+                            "name": "Node.js",
+                            "format": "node",
+                            "snippet": "var http = require(\"http\");\n\nvar options = {\n  \"method\": \"PUT\",\n  \"hostname\": \"localhost\",\n  \"port\": \"3007\",\n  \"path\": \"/v1/sum/subtract/5/5\",\n  \"headers\": {}\n};\n\nvar req = http.request(options, function (res) {\n  var chunks = [];\n\n  res.on(\"data\", function (chunk) {\n    chunks.push(chunk);\n  });\n\n  res.on(\"end\", function () {\n    var body = Buffer.concat(chunks);\n    console.log(body.toString());\n  });\n});\n\nreq.end();"
+                        },
+                        {
+                            "name": "Shell",
+                            "format": "shell",
+                            "snippet": "curl --request PUT \\\n  --url http://localhost:3007/v1/sum/subtract/5/5"
+                        }
+                    ],
+                    "summary": "Subtract",
+                    "description": "Subtracts the second number from the first and return the result",
+                    "tags": [
+                        "sum"
+                    ],
+                    "id": "putv1sumsubtractab",
+                    "parameters": {
+                        "path": [
+                            {
+                                "description": "the first number",
+                                "type": "number",
+                                "required": true,
+                                "name": "a",
+                                "example": "5"
+                            },
+                            {
+                                "description": "the second number",
+                                "type": "number",
+                                "required": true,
+                                "name": "b",
+                                "example": "5"
+                            }
+                        ]
+                    },
+                    "responses": {
+                        "success": [
+                            {
+                                "statusCode": 200,
+                                "description": "Success",
+                                "schema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"equals\": {\n      \"type\": \"number\"\n    }\n  }\n}",
+                                "examples": [
+                                    {
+                                        "name": "JSON",
+                                        "mimeType": "application/json",
+                                        "data": "{\n  \"equals\": 0\n}"
+                                    }
+                                ]
+                            }
+                        ],
+                        "errors": [
+                            {
+                                "statusCode": 400,
+                                "description": "Bad Request"
+                            },
+                            {
+                                "statusCode": 404,
+                                "description": "Sum not found"
+                            },
+                            {
+                                "statusCode": 500,
+                                "description": "Internal Server Error"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "errors": [
+                {
+                    "statusCode": 400,
+                    "description": "Bad Request"
+                },
+                {
+                    "statusCode": 404,
+                    "description": "Sum not found"
+                },
+                {
+                    "statusCode": 500,
+                    "description": "Internal Server Error"
+                }
+            ],
+            "text": {
+                "before": [
+                    {
+                        "html": "<p>Introduction</p>\n",
+                        "class": "group-section",
+                        "name": "Introduction",
+                        "id": "undefined-introduction"
+                    }
+                ],
+                "after": [
+                    {
+                        "html": "<p> <strong>Text to explain maths</strong></p>\n",
+                        "class": "group-footer",
+                        "name": "Maths",
+                        "id": "undefined-maths"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Store",
+            "description": "An API for storing sum data. You can list, add, delete, get and update the sums in the store. It has 3 ways of adding a new sum.",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "http://example.org"
+            },
+            "endpoints": [
+                {
+                    "path": "/store/",
+                    "method": "get",
+                    "code": [
+                        {
+                            "name": "JavaScript",
+                            "format": "javascript",
+                            "snippet": "var data = null;\n\nvar xhr = new XMLHttpRequest();\nxhr.withCredentials = true;\n\nxhr.addEventListener(\"readystatechange\", function () {\n  if (this.readyState === this.DONE) {\n    console.log(this.responseText);\n  }\n});\n\nxhr.open(\"GET\", \"http://localhost:3007/v1/store/?page=1&pagesize=10\");\nxhr.setRequestHeader(\"x-format\", \"decimal\");\n\nxhr.send(data);"
+                        },
+                        {
+                            "name": "Node.js",
+                            "format": "node",
+                            "snippet": "var http = require(\"http\");\n\nvar options = {\n  \"method\": \"GET\",\n  \"hostname\": \"localhost\",\n  \"port\": \"3007\",\n  \"path\": \"/v1/store/?page=1&pagesize=10\",\n  \"headers\": {\n    \"x-format\": \"decimal\"\n  }\n};\n\nvar req = http.request(options, function (res) {\n  var chunks = [];\n\n  res.on(\"data\", function (chunk) {\n    chunks.push(chunk);\n  });\n\n  res.on(\"end\", function () {\n    var body = Buffer.concat(chunks);\n    console.log(body.toString());\n  });\n});\n\nreq.end();"
+                        },
+                        {
+                            "name": "Shell",
+                            "format": "shell",
+                            "snippet": "curl --request GET \\\n  --url 'http://localhost:3007/v1/store/?page=1&pagesize=10' \\\n  --header 'x-format: decimal'"
+                        }
+                    ],
+                    "summary": "List sums",
+                    "description": "List the sums in the data store",
+                    "tags": [
+                        "store"
+                    ],
+                    "id": "getv1store",
+                    "parameters": {
+                        "header": [
+                            {
+                                "description": "return result as decimal or binary",
+                                "type": "string",
+                                "enum": [
+                                    "decimal",
+                                    "binary"
+                                ],
+                                "default": "decimal",
+                                "name": "x-format"
+                            }
+                        ],
+                        "query": [
+                            {
+                                "description": "the page number",
+                                "type": "number",
+                                "name": "page",
+                                "example": 1
+                            },
+                            {
+                                "description": "the number of items to a page",
+                                "type": "number",
+                                "name": "pagesize",
+                                "example": 10
+                            }
+                        ]
+                    },
+                    "responses": {
+                        "success": [
+                            {
+                                "statusCode": 200,
+                                "description": "Success",
+                                "schema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"items\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"properties\": {\n          \"id\": {\n            \"type\": \"string\",\n            \"example\": \"x78P9c\"\n          },\n          \"a\": {\n            \"type\": \"number\",\n            \"example\": 5\n          },\n          \"b\": {\n            \"type\": \"number\",\n            \"example\": 5\n          },\n          \"operator\": {\n            \"description\": \"either +, -, /, or *\",\n            \"type\": \"string\",\n            \"example\": \"+\"\n          },\n          \"equals\": {\n            \"type\": \"number\",\n            \"example\": 10\n          },\n          \"created\": {\n            \"description\": \"ISO date string\",\n            \"type\": \"string\",\n            \"example\": \"2015-12-01\"\n          },\n          \"modified\": {\n            \"description\": \"ISO date string\",\n            \"type\": \"string\",\n            \"example\": \"2015-12-01\"\n          }\n        },\n        \"required\": [\"id\", \"a\", \"b\", \"operator\", \"equals\", \"created\"],\n        \"type\": \"object\"\n      }\n    },\n    \"count\": {\n      \"type\": \"number\",\n      \"example\": \"1\"\n    },\n    \"pageSize\": {\n      \"type\": \"number\",\n      \"example\": \"10\"\n    },\n    \"page\": {\n      \"type\": \"number\",\n      \"example\": \"1\"\n    },\n    \"pageCount\": {\n      \"type\": \"number\",\n      \"example\": \"1\"\n    }\n  },\n  \"required\": [\"count\", \"pageSize\", \"page\", \"pageCount\"]\n}",
+                                "examples": [
+                                    {
+                                        "name": "JSON",
+                                        "mimeType": "application/json",
+                                        "data": "{\n  \"items\": [{\n    \"id\": \"x78P9c\",\n    \"a\": 5,\n    \"b\": 5,\n    \"operator\": \"+\",\n    \"equals\": 10,\n    \"created\": \"2015-12-01\",\n    \"modified\": \"2015-12-01\"\n  }],\n  \"count\": 1,\n  \"pageSize\": 10,\n  \"page\": 1,\n  \"pageCount\": 1\n}"
+                                    }
+                                ]
+                            }
+                        ],
+                        "errors": [
+                            {
+                                "statusCode": 400,
+                                "description": "Bad Request"
+                            },
+                            {
+                                "statusCode": 404,
+                                "description": "Sum not found"
+                            },
+                            {
+                                "statusCode": 500,
+                                "description": "Internal Server Error"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "path": "/store/",
+                    "method": "post",
+                    "code": [
+                        {
+                            "name": "JavaScript",
+                            "format": "javascript",
+                            "snippet": "var data = \"a=10&b=0&operator=%2B&equals=0\";\n\nvar xhr = new XMLHttpRequest();\nxhr.withCredentials = true;\n\nxhr.addEventListener(\"readystatechange\", function () {\n  if (this.readyState === this.DONE) {\n    console.log(this.responseText);\n  }\n});\n\nxhr.open(\"POST\", \"http://localhost:3007/v1/store/\");\n\nxhr.send(data);"
+                        },
+                        {
+                            "name": "Node.js",
+                            "format": "node",
+                            "snippet": "var qs = require(\"querystring\");\nvar http = require(\"http\");\n\nvar options = {\n  \"method\": \"POST\",\n  \"hostname\": \"localhost\",\n  \"port\": \"3007\",\n  \"path\": \"/v1/store/\",\n  \"headers\": {}\n};\n\nvar req = http.request(options, function (res) {\n  var chunks = [];\n\n  res.on(\"data\", function (chunk) {\n    chunks.push(chunk);\n  });\n\n  res.on(\"end\", function () {\n    var body = Buffer.concat(chunks);\n    console.log(body.toString());\n  });\n});\n\nreq.write(qs.stringify({ a: '10', b: '0', operator: '+', equals: '0' }));\nreq.end();"
+                        },
+                        {
+                            "name": "Shell",
+                            "format": "shell",
+                            "snippet": "curl --request POST \\\n  --url http://localhost:3007/v1/store/ \\\n  --data 'a=10&b=0&operator=%2B&equals=0'"
+                        }
+                    ],
+                    "summary": "Add sum",
+                    "description": "Adds a sum to the data store",
+                    "produces": [
+                        "application/json",
+                        "application/xml"
+                    ],
+                    "consumes": [
+                        "application/json",
+                        "application/xml"
+                    ],
+                    "tags": [
+                        "store"
+                    ],
+                    "id": "postv1store",
+                    "parameters": {
+                        "form": [
+                            {
+                                "description": "the first number",
+                                "type": "number",
+                                "required": true,
+                                "default": 10,
+                                "name": "a"
+                            },
+                            {
+                                "description": "the second number",
+                                "type": "number",
+                                "required": true,
+                                "name": "b"
+                            },
+                            {
+                                "description": "the opertator i.e. + - / or *",
+                                "type": "string",
+                                "required": true,
+                                "enum": [
+                                    "+",
+                                    "-",
+                                    "/",
+                                    "*"
+                                ],
+                                "default": "+",
+                                "name": "operator"
+                            },
+                            {
+                                "description": "the result of the sum",
+                                "type": "number",
+                                "required": true,
+                                "name": "equals"
+                            }
+                        ]
+                    },
+                    "responses": {
+                        "success": [
+                            {
+                                "statusCode": 200,
+                                "description": "Success",
+                                "schema": "{\n  \"description\": \"json body for sum\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"id\": {\n      \"type\": \"string\",\n      \"example\": \"x78P9c\"\n    },\n    \"a\": {\n      \"type\": \"number\",\n      \"example\": 5\n    },\n    \"b\": {\n      \"type\": \"number\",\n      \"example\": 5\n    },\n    \"operator\": {\n      \"description\": \"either +, -, /, or *\",\n      \"type\": \"string\",\n      \"example\": \"+\"\n    },\n    \"equals\": {\n      \"type\": \"number\",\n      \"example\": 10\n    },\n    \"created\": {\n      \"description\": \"ISO date string\",\n      \"type\": \"string\",\n      \"example\": \"2015-12-01\"\n    },\n    \"modified\": {\n      \"description\": \"ISO date string\",\n      \"type\": \"string\",\n      \"example\": \"2015-12-01\"\n    }\n  },\n  \"required\": [\"id\", \"a\", \"b\", \"operator\", \"equals\", \"created\"]\n}",
+                                "examples": [
+                                    {
+                                        "name": "JSON",
+                                        "mimeType": "application/json",
+                                        "data": "{\n  \"id\": \"x78P9c\",\n  \"a\": 5,\n  \"b\": 5,\n  \"operator\": \"+\",\n  \"equals\": 10,\n  \"created\": \"2015-12-01\",\n  \"modified\": \"2015-12-01\"\n}"
+                                    }
+                                ]
+                            }
+                        ],
+                        "errors": [
+                            {
+                                "statusCode": 400,
+                                "description": "Bad Request"
+                            },
+                            {
+                                "statusCode": 500,
+                                "description": "Internal Server Error"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "path": "/store/file/",
+                    "method": "post",
+                    "code": [
+                        {
+                            "name": "JavaScript",
+                            "format": "javascript",
+                            "snippet": "var data = \"file=filename.txt\";\n\nvar xhr = new XMLHttpRequest();\nxhr.withCredentials = true;\n\nxhr.addEventListener(\"readystatechange\", function () {\n  if (this.readyState === this.DONE) {\n    console.log(this.responseText);\n  }\n});\n\nxhr.open(\"POST\", \"http://localhost:3007/v1/store/file/\");\n\nxhr.send(data);"
+                        },
+                        {
+                            "name": "Node.js",
+                            "format": "node",
+                            "snippet": "var qs = require(\"querystring\");\nvar http = require(\"http\");\n\nvar options = {\n  \"method\": \"POST\",\n  \"hostname\": \"localhost\",\n  \"port\": \"3007\",\n  \"path\": \"/v1/store/file/\",\n  \"headers\": {}\n};\n\nvar req = http.request(options, function (res) {\n  var chunks = [];\n\n  res.on(\"data\", function (chunk) {\n    chunks.push(chunk);\n  });\n\n  res.on(\"end\", function () {\n    var body = Buffer.concat(chunks);\n    console.log(body.toString());\n  });\n});\n\nreq.write(qs.stringify({ file: 'filename.txt' }));\nreq.end();"
+                        },
+                        {
+                            "name": "Shell",
+                            "format": "shell",
+                            "snippet": "curl --request POST \\\n  --url http://localhost:3007/v1/store/file/ \\\n  --data file=filename.txt"
+                        }
+                    ],
+                    "summary": "Add sum, with JSON file",
+                    "description": "Adds a sum to the data store, using JSON object in a uploaded file",
+                    "consumes": [
+                        "multipart/form-data"
+                    ],
+                    "deprecated": true,
+                    "tags": [
+                        "store"
+                    ],
+                    "id": "postv1storefile",
+                    "parameters": {
+                        "form": [
+                            {
+                                "description": "json file with object containing: a, b, operator and equals",
+                                "type": "file",
+                                "required": true,
+                                "name": "file"
+                            }
+                        ]
+                    },
+                    "responses": {
+                        "success": [
+                            {
+                                "statusCode": 200,
+                                "description": "Success",
+                                "schema": "{\n  \"description\": \"json body for sum\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"id\": {\n      \"type\": \"string\",\n      \"example\": \"x78P9c\"\n    },\n    \"a\": {\n      \"type\": \"number\",\n      \"example\": 5\n    },\n    \"b\": {\n      \"type\": \"number\",\n      \"example\": 5\n    },\n    \"operator\": {\n      \"description\": \"either +, -, /, or *\",\n      \"type\": \"string\",\n      \"example\": \"+\"\n    },\n    \"equals\": {\n      \"type\": \"number\",\n      \"example\": 10\n    },\n    \"created\": {\n      \"description\": \"ISO date string\",\n      \"type\": \"string\",\n      \"example\": \"2015-12-01\"\n    },\n    \"modified\": {\n      \"description\": \"ISO date string\",\n      \"type\": \"string\",\n      \"example\": \"2015-12-01\"\n    }\n  },\n  \"required\": [\"id\", \"a\", \"b\", \"operator\", \"equals\", \"created\"]\n}",
+                                "examples": [
+                                    {
+                                        "name": "JSON",
+                                        "mimeType": "application/json",
+                                        "data": "{\n  \"id\": \"x78P9c\",\n  \"a\": 5,\n  \"b\": 5,\n  \"operator\": \"+\",\n  \"equals\": 10,\n  \"created\": \"2015-12-01\",\n  \"modified\": \"2015-12-01\"\n}"
+                                    }
+                                ]
+                            }
+                        ],
+                        "errors": [
+                            {
+                                "statusCode": 400,
+                                "description": "Bad Request"
+                            },
+                            {
+                                "statusCode": 404,
+                                "description": "Unsupported Media Type"
+                            },
+                            {
+                                "statusCode": 500,
+                                "description": "Internal Server Error"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "path": "/store/payload/",
+                    "method": "post",
+                    "code": [
+                        {
+                            "name": "JavaScript",
+                            "format": "javascript",
+                            "snippet": "var data = JSON.stringify({\n  \"a\": 0,\n  \"b\": 0,\n  \"operator\": \"+\",\n  \"equals\": 0\n});\n\nvar xhr = new XMLHttpRequest();\nxhr.withCredentials = true;\n\nxhr.addEventListener(\"readystatechange\", function () {\n  if (this.readyState === this.DONE) {\n    console.log(this.responseText);\n  }\n});\n\nxhr.open(\"POST\", \"http://localhost:3007/v1/store/payload/\");\n\nxhr.send(data);"
+                        },
+                        {
+                            "name": "Node.js",
+                            "format": "node",
+                            "snippet": "var http = require(\"http\");\n\nvar options = {\n  \"method\": \"POST\",\n  \"hostname\": \"localhost\",\n  \"port\": \"3007\",\n  \"path\": \"/v1/store/payload/\",\n  \"headers\": {}\n};\n\nvar req = http.request(options, function (res) {\n  var chunks = [];\n\n  res.on(\"data\", function (chunk) {\n    chunks.push(chunk);\n  });\n\n  res.on(\"end\", function () {\n    var body = Buffer.concat(chunks);\n    console.log(body.toString());\n  });\n});\n\nreq.write(JSON.stringify({ a: 0, b: 0, operator: '+', equals: 0 }));\nreq.end();"
+                        },
+                        {
+                            "name": "Shell",
+                            "format": "shell",
+                            "snippet": "curl --request POST \\\n  --url http://localhost:3007/v1/store/payload/ \\\n  --data '{\"a\":0,\"b\":0,\"operator\":\"+\",\"equals\":0}'"
+                        }
+                    ],
+                    "summary": "Add sum, with JSON object",
+                    "description": "Adds a sum to the data store, using JSON object in payload",
+                    "tags": [
+                        "store"
+                    ],
+                    "id": "postv1storepayload",
+                    "parameters": {
+                        "body": {
+                            "schema": {
+                                "properties": {
+                                    "a": {
+                                        "description": "the first number",
+                                        "type": "number"
+                                    },
+                                    "b": {
+                                        "description": "the second number",
+                                        "type": "number"
+                                    },
+                                    "operator": {
+                                        "description": "the opertator i.e. + - / or *",
+                                        "type": "string",
+                                        "enum": [
+                                            "+",
+                                            "-",
+                                            "/",
+                                            "*"
+                                        ],
+                                        "default": "+"
+                                    },
+                                    "equals": {
+                                        "description": "the result of the sum",
+                                        "type": "number"
+                                    }
+                                },
+                                "required": [
+                                    "a",
+                                    "b",
+                                    "operator",
+                                    "equals"
+                                ],
+                                "type": "object"
+                            },
+                            "name": "body",
+                            "examples": [
+                                {
+                                    "name": "JSON",
+                                    "mimeType": "application/json",
+                                    "data": "{\n  \"a\": 0,\n  \"b\": 0,\n  \"operator\": \"+\",\n  \"equals\": 0\n}"
+                                }
+                            ]
+                        }
+                    },
+                    "responses": {
+                        "success": [
+                            {
+                                "statusCode": 200,
+                                "description": "Success",
+                                "schema": "{\n  \"description\": \"json body for sum\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"id\": {\n      \"type\": \"string\",\n      \"example\": \"x78P9c\"\n    },\n    \"a\": {\n      \"type\": \"number\",\n      \"example\": 5\n    },\n    \"b\": {\n      \"type\": \"number\",\n      \"example\": 5\n    },\n    \"operator\": {\n      \"description\": \"either +, -, /, or *\",\n      \"type\": \"string\",\n      \"example\": \"+\"\n    },\n    \"equals\": {\n      \"type\": \"number\",\n      \"example\": 10\n    },\n    \"created\": {\n      \"description\": \"ISO date string\",\n      \"type\": \"string\",\n      \"example\": \"2015-12-01\"\n    },\n    \"modified\": {\n      \"description\": \"ISO date string\",\n      \"type\": \"string\",\n      \"example\": \"2015-12-01\"\n    }\n  },\n  \"required\": [\"id\", \"a\", \"b\", \"operator\", \"equals\", \"created\"]\n}",
+                                "examples": [
+                                    {
+                                        "name": "JSON",
+                                        "mimeType": "application/json",
+                                        "data": "{\n  \"id\": \"x78P9c\",\n  \"a\": 5,\n  \"b\": 5,\n  \"operator\": \"+\",\n  \"equals\": 10,\n  \"created\": \"2015-12-01\",\n  \"modified\": \"2015-12-01\"\n}"
+                                    }
+                                ]
+                            }
+                        ],
+                        "errors": [
+                            {
+                                "statusCode": 400,
+                                "description": "Bad Request"
+                            },
+                            {
+                                "statusCode": 500,
+                                "description": "Internal Server Error"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "path": "/store/{id}",
+                    "method": "delete",
+                    "code": [
+                        {
+                            "name": "JavaScript",
+                            "format": "javascript",
+                            "snippet": "var data = null;\n\nvar xhr = new XMLHttpRequest();\nxhr.withCredentials = true;\n\nxhr.addEventListener(\"readystatechange\", function () {\n  if (this.readyState === this.DONE) {\n    console.log(this.responseText);\n  }\n});\n\nxhr.open(\"DELETE\", \"http://localhost:3007/v1/store/string\");\n\nxhr.send(data);"
+                        },
+                        {
+                            "name": "Node.js",
+                            "format": "node",
+                            "snippet": "var http = require(\"http\");\n\nvar options = {\n  \"method\": \"DELETE\",\n  \"hostname\": \"localhost\",\n  \"port\": \"3007\",\n  \"path\": \"/v1/store/string\",\n  \"headers\": {}\n};\n\nvar req = http.request(options, function (res) {\n  var chunks = [];\n\n  res.on(\"data\", function (chunk) {\n    chunks.push(chunk);\n  });\n\n  res.on(\"end\", function () {\n    var body = Buffer.concat(chunks);\n    console.log(body.toString());\n  });\n});\n\nreq.end();"
+                        },
+                        {
+                            "name": "Shell",
+                            "format": "shell",
+                            "snippet": "curl --request DELETE \\\n  --url http://localhost:3007/v1/store/string"
+                        }
+                    ],
+                    "summary": "Delete sums",
+                    "description": "Delete a sums from the data store",
+                    "tags": [
+                        "store"
+                    ],
+                    "id": "deletev1storeid",
+                    "parameters": {
+                        "path": [
+                            {
+                                "description": "the id of the sum in the store",
+                                "type": "string",
+                                "required": true,
+                                "name": "id"
+                            }
+                        ]
+                    },
+                    "responses": {
+                        "success": [
+                            {
+                                "statusCode": 200,
+                                "description": "Success",
+                                "schema": "{\n  \"description\": \"json body for sum\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"id\": {\n      \"type\": \"string\",\n      \"example\": \"x78P9c\"\n    },\n    \"a\": {\n      \"type\": \"number\",\n      \"example\": 5\n    },\n    \"b\": {\n      \"type\": \"number\",\n      \"example\": 5\n    },\n    \"operator\": {\n      \"description\": \"either +, -, /, or *\",\n      \"type\": \"string\",\n      \"example\": \"+\"\n    },\n    \"equals\": {\n      \"type\": \"number\",\n      \"example\": 10\n    },\n    \"created\": {\n      \"description\": \"ISO date string\",\n      \"type\": \"string\",\n      \"example\": \"2015-12-01\"\n    },\n    \"modified\": {\n      \"description\": \"ISO date string\",\n      \"type\": \"string\",\n      \"example\": \"2015-12-01\"\n    }\n  },\n  \"required\": [\"id\", \"a\", \"b\", \"operator\", \"equals\", \"created\"]\n}",
+                                "examples": [
+                                    {
+                                        "name": "JSON",
+                                        "mimeType": "application/json",
+                                        "data": "{\n  \"id\": \"x78P9c\",\n  \"a\": 5,\n  \"b\": 5,\n  \"operator\": \"+\",\n  \"equals\": 10,\n  \"created\": \"2015-12-01\",\n  \"modified\": \"2015-12-01\"\n}"
+                                    }
+                                ]
+                            }
+                        ],
+                        "errors": [
+                            {
+                                "statusCode": 400,
+                                "description": "Bad Request"
+                            },
+                            {
+                                "statusCode": 500,
+                                "description": "Internal Server Error"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "path": "/store/{id}",
+                    "method": "get",
+                    "code": [
+                        {
+                            "name": "JavaScript",
+                            "format": "javascript",
+                            "snippet": "var data = null;\n\nvar xhr = new XMLHttpRequest();\nxhr.withCredentials = true;\n\nxhr.addEventListener(\"readystatechange\", function () {\n  if (this.readyState === this.DONE) {\n    console.log(this.responseText);\n  }\n});\n\nxhr.open(\"GET\", \"http://localhost:3007/v1/store/string\");\n\nxhr.send(data);"
+                        },
+                        {
+                            "name": "Node.js",
+                            "format": "node",
+                            "snippet": "var http = require(\"http\");\n\nvar options = {\n  \"method\": \"GET\",\n  \"hostname\": \"localhost\",\n  \"port\": \"3007\",\n  \"path\": \"/v1/store/string\",\n  \"headers\": {}\n};\n\nvar req = http.request(options, function (res) {\n  var chunks = [];\n\n  res.on(\"data\", function (chunk) {\n    chunks.push(chunk);\n  });\n\n  res.on(\"end\", function () {\n    var body = Buffer.concat(chunks);\n    console.log(body.toString());\n  });\n});\n\nreq.end();"
+                        },
+                        {
+                            "name": "Shell",
+                            "format": "shell",
+                            "snippet": "curl --request GET \\\n  --url http://localhost:3007/v1/store/string"
+                        }
+                    ],
+                    "summary": "Get sum",
+                    "description": "Get a sum from the store",
+                    "tags": [
+                        "store"
+                    ],
+                    "id": "getv1storeid",
+                    "parameters": {
+                        "path": [
+                            {
+                                "description": "the id of the sum in the store",
+                                "type": "string",
+                                "required": true,
+                                "name": "id"
+                            }
+                        ]
+                    },
+                    "responses": {
+                        "success": [
+                            {
+                                "statusCode": 200,
+                                "description": "Success",
+                                "schema": "{\n  \"description\": \"json body for sum\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"id\": {\n      \"type\": \"string\",\n      \"example\": \"x78P9c\"\n    },\n    \"a\": {\n      \"type\": \"number\",\n      \"example\": 5\n    },\n    \"b\": {\n      \"type\": \"number\",\n      \"example\": 5\n    },\n    \"operator\": {\n      \"description\": \"either +, -, /, or *\",\n      \"type\": \"string\",\n      \"example\": \"+\"\n    },\n    \"equals\": {\n      \"type\": \"number\",\n      \"example\": 10\n    },\n    \"created\": {\n      \"description\": \"ISO date string\",\n      \"type\": \"string\",\n      \"example\": \"2015-12-01\"\n    },\n    \"modified\": {\n      \"description\": \"ISO date string\",\n      \"type\": \"string\",\n      \"example\": \"2015-12-01\"\n    }\n  },\n  \"required\": [\"id\", \"a\", \"b\", \"operator\", \"equals\", \"created\"]\n}",
+                                "examples": [
+                                    {
+                                        "name": "JSON",
+                                        "mimeType": "application/json",
+                                        "data": "{\n  \"id\": \"x78P9c\",\n  \"a\": 5,\n  \"b\": 5,\n  \"operator\": \"+\",\n  \"equals\": 10,\n  \"created\": \"2015-12-01\",\n  \"modified\": \"2015-12-01\"\n}"
+                                    }
+                                ]
+                            }
+                        ],
+                        "errors": [
+                            {
+                                "statusCode": 400,
+                                "description": "Bad Request"
+                            },
+                            {
+                                "statusCode": 500,
+                                "description": "Internal Server Error"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "path": "/store/{id}",
+                    "method": "put",
+                    "code": [
+                        {
+                            "name": "JavaScript",
+                            "format": "javascript",
+                            "snippet": "var data = \"a=0&b=0&operator=%2B&equals=0\";\n\nvar xhr = new XMLHttpRequest();\nxhr.withCredentials = true;\n\nxhr.addEventListener(\"readystatechange\", function () {\n  if (this.readyState === this.DONE) {\n    console.log(this.responseText);\n  }\n});\n\nxhr.open(\"PUT\", \"http://localhost:3007/v1/store/string\");\n\nxhr.send(data);"
+                        },
+                        {
+                            "name": "Node.js",
+                            "format": "node",
+                            "snippet": "var qs = require(\"querystring\");\nvar http = require(\"http\");\n\nvar options = {\n  \"method\": \"PUT\",\n  \"hostname\": \"localhost\",\n  \"port\": \"3007\",\n  \"path\": \"/v1/store/string\",\n  \"headers\": {}\n};\n\nvar req = http.request(options, function (res) {\n  var chunks = [];\n\n  res.on(\"data\", function (chunk) {\n    chunks.push(chunk);\n  });\n\n  res.on(\"end\", function () {\n    var body = Buffer.concat(chunks);\n    console.log(body.toString());\n  });\n});\n\nreq.write(qs.stringify({ a: '0', b: '0', operator: '+', equals: '0' }));\nreq.end();"
+                        },
+                        {
+                            "name": "Shell",
+                            "format": "shell",
+                            "snippet": "curl --request PUT \\\n  --url http://localhost:3007/v1/store/string \\\n  --data 'a=0&b=0&operator=%2B&equals=0'"
+                        }
+                    ],
+                    "summary": "Update sum",
+                    "description": "Update a sum in our data store",
+                    "consumes": [
+                        "application/x-www-form-urlencoded"
+                    ],
+                    "tags": [
+                        "store"
+                    ],
+                    "id": "putv1storeid",
+                    "parameters": {
+                        "path": [
+                            {
+                                "description": "the id of the sum in the store",
+                                "type": "string",
+                                "required": true,
+                                "name": "id"
+                            }
+                        ],
+                        "form": [
+                            {
+                                "description": "the first number",
+                                "type": "number",
+                                "required": true,
+                                "name": "a"
+                            },
+                            {
+                                "description": "the second number",
+                                "type": "number",
+                                "required": true,
+                                "name": "b"
+                            },
+                            {
+                                "description": "the opertator i.e. + - / or *",
+                                "type": "string",
+                                "required": true,
+                                "enum": [
+                                    "+",
+                                    "-",
+                                    "/",
+                                    "*"
+                                ],
+                                "default": "+",
+                                "name": "operator"
+                            },
+                            {
+                                "description": "the result of the sum",
+                                "type": "number",
+                                "required": true,
+                                "name": "equals"
+                            }
+                        ]
+                    },
+                    "responses": {
+                        "success": [
+                            {
+                                "statusCode": 200,
+                                "description": "Success",
+                                "schema": "{\n  \"description\": \"json body for sum\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"id\": {\n      \"type\": \"string\",\n      \"example\": \"x78P9c\"\n    },\n    \"a\": {\n      \"type\": \"number\",\n      \"example\": 5\n    },\n    \"b\": {\n      \"type\": \"number\",\n      \"example\": 5\n    },\n    \"operator\": {\n      \"description\": \"either +, -, /, or *\",\n      \"type\": \"string\",\n      \"example\": \"+\"\n    },\n    \"equals\": {\n      \"type\": \"number\",\n      \"example\": 10\n    },\n    \"created\": {\n      \"description\": \"ISO date string\",\n      \"type\": \"string\",\n      \"example\": \"2015-12-01\"\n    },\n    \"modified\": {\n      \"description\": \"ISO date string\",\n      \"type\": \"string\",\n      \"example\": \"2015-12-01\"\n    }\n  },\n  \"required\": [\"id\", \"a\", \"b\", \"operator\", \"equals\", \"created\"]\n}",
+                                "examples": [
+                                    {
+                                        "name": "JSON",
+                                        "mimeType": "application/json",
+                                        "data": "{\n  \"id\": \"x78P9c\",\n  \"a\": 5,\n  \"b\": 5,\n  \"operator\": \"+\",\n  \"equals\": 10,\n  \"created\": \"2015-12-01\",\n  \"modified\": \"2015-12-01\"\n}"
+                                    }
+                                ]
+                            }
+                        ],
+                        "errors": [
+                            {
+                                "statusCode": 400,
+                                "description": "Bad Request"
+                            },
+                            {
+                                "statusCode": 500,
+                                "description": "Internal Server Error"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "errors": [
+                {
+                    "statusCode": 400,
+                    "description": "Bad Request"
+                },
+                {
+                    "statusCode": 404,
+                    "description": "Sum not found"
+                },
+                {
+                    "statusCode": 404,
+                    "description": "Unsupported Media Type"
+                },
+                {
+                    "statusCode": 500,
+                    "description": "Internal Server Error"
+                }
+            ]
+        }
+    ],
+    "errors": [
+        {
+            "statusCode": 400,
+            "description": "Bad Request"
+        },
+        {
+            "statusCode": 404,
+            "description": "Sum not found"
+        },
+        {
+            "statusCode": 404,
+            "description": "Unsupported Media Type"
+        },
+        {
+            "statusCode": 500,
+            "description": "Internal Server Error"
+        }
+    ],
+    "text": {
+        "before": [
+            {
+                "html": "<p>This document describes v2 of the Auth0 API, which is meant to be used by back-end servers or trusted parties performing\nadministrative tasks. Generally speaking, anything that can be done through the Auth0 dashboard (and more) can also be\ndone through this API.</p>\n<p>APIv2 is intended as a replacement for APIv1, an earlier version of the API. APIv2 is production ready and is recommended\nfor any new integrations. To learn more about the differences between v1 and v2, please refer to this document.</p>\n<p>This API is separate from the publicly accessible authentication API, which is meant to be used by front-ends and\nuntrusted parties.</p>\n",
+                "class": "introduction",
+                "name": "Introduction",
+                "id": "api-introduction"
+            },
+            {
+                "html": "<p>There are two main approaches to obtaining a token to call the API:</p>\n<p>Use the Token Generator on the top-left of this page</p>\n<ul>\n<li>Construct and sign a JWT yourself using <a href=\"http://jwt.io\">http://jwt.io</a> or any of the listed JWT libraries</li>\n<li>Whatever approach you choose, we recommend storing tokens in your application directly, and not generating them dynamically using your API secret.</li>\n</ul>\n<p>Tokens created with the Token Generator in this page do not contain an exp claim, which means they never expire. You can use the Token Generator\nto create tokens for your production application without writing any code.</p>\n",
+                "class": "api-key",
+                "name": "API key",
+                "id": "api-api-key"
+            }
+        ],
+        "after": [
+            {
+                "html": "<p>Usage policy defines the uses you can put the data to.</p>\n",
+                "class": "data-usage",
+                "name": "Usage policy",
+                "id": "api-usage-policy"
+            }
+        ]
+    },
+    "theme": {
+        "cssLinks": [
+            "plain/css/plain.css",
+            "//yui.yahooapis.com/pure/0.6.0/pure-min.css",
+            "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/tomorrow.min.css"
+        ],
+        "jsLinks": [
+            "plain/js/plain.js",
+            "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"
+        ]
+    }
+}

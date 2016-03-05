@@ -1,0 +1,18 @@
+
+{{#if enum}}
+    <select name="select" name="{{name}}">
+        {{#each enum}}
+        <option value="{{this}}" {{#is this ../default}}selected{{/is}}>{{this}}</option>
+        {{/each}}
+    </select>
+
+{{else}}
+    <input
+        type="text"
+        name="{{name}}"
+        {{#if required}}required="true" {{/if}}
+        {{#if dafault}}value="{{dafault}}" {{/if}}
+        {{#if example}}placeholder="ie {{example}}" {{/if}}
+        data-parameter-type= {{parameterType}}
+    />
+{{/if}}

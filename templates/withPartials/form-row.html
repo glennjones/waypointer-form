@@ -1,0 +1,10 @@
+<tr>
+    <td><label>{{name}}</label></td>
+    <td>{{> form-input parameterType=parameterType }}</td>
+    <td>
+        {{#if required}}<strong>Required</strong>. {{/if}}
+        {{capitalizeFirst description}}
+    </td>
+    <td>{{parameterType}}</td>
+    <td>{{type}}</td>
+</tr>
