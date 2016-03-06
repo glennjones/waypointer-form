@@ -66,12 +66,15 @@ function fireEndpoint(e) {
                 options.headers[name] = value;
                 break;
             case 'form':
-                options.form[name] = value;
+                if(input.type !== 'file'){
+                    options.form[name] = value;
+                }
                 break;
          }
     });
 
-    // get body from textarea
+
+    // body with JSON
     var textArea = form.querySelector('textarea[data-parameter-type="body"]');
     if(textArea){
         if(textArea.cm){
@@ -81,21 +84,36 @@ function fireEndpoint(e) {
         options.body = textArea.value;
     }
 
-    // covert form object into url string
+
+    // body with querystring
     if(hasProperties(options.form)){
         options.headers['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
         options.body = queryStringObject(options.form);
     }
     delete options.form;
 
-    // covert form object into url string
+
+    // body with file
+    var fileInput = document.querySelector('input[type="file"]')
+    if(fileInput){
+        var data = new FormData()
+        data.append('file', fileInput.files[0])
+        if(options.method === 'post' || options.method === 'put'){
+            options.body = data;
+        }
+    }
+
+
+    // querystring
     if(hasProperties(options.query)){
         var querystring = queryStringObject(options.query);
         urlTemplate = appendQueryString(urlTemplate, querystring);
     }
     delete options.query;
 
-   // console.log(options)
+
+
+
 
     fetch('//' + urlTemplate, options)
         .then(function (response) {
@@ -107,41 +125,6 @@ function fireEndpoint(e) {
             console.log('Fetch Error', err);
         });
 
-/*
-    fetch('http://httpbin.org/put', {method: 'put'})
-        .then(
-            function(response) {
-            if (response.status !== 200) {
-                console.log('Looks like there was a problem. Status Code: ' +
-                response.status);
-                return;
-            }
-
-            // Examine the text in the response
-            response.json().then(function(data) {
-                console.log(data);
-            });
-            }
-        )
-        .catch(function(err) {
-            console.log('Fetch Error :-S', err);
-        });
-*/
-
-        /*
-    fetch('//' + urlTemplate, options)
-        .then(function(response) {
-            response.json().then(function(json) {
-                console.log(json);
-            });
-        }).catch(function(ex) {
-            console.log('parsing failed', ex)
-        })
-
-    function oncomplate( data ){
-        console.log('parsed json', data)
-    }
-    */
 
 }
 

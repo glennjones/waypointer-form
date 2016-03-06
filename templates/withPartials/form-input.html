@@ -14,11 +14,15 @@
         </select>
     {{else}}
         <input
-            type="text"
+            {{#is type "file" }}
+              type="file"
+            {{else}}
+              type="text"
+              {{#if dafault}}value="{{dafault}}" {{/if}}
+              {{#if example}}placeholder="ie {{example}}" {{/if}}
+            {{/is}}
             name="{{name}}"
             {{#if required}}required="true" {{/if}}
-            {{#if dafault}}value="{{dafault}}" {{/if}}
-            {{#if example}}placeholder="ie {{example}}" {{/if}}
             data-parameter-type={{parameterType}}
         />
     {{/is}}
