@@ -88,11 +88,11 @@
                         <div class="before {{class}}">{{{html}}}</div>
                     {{/each}}
 
-                    <pre><code class="curl">{{this.method}} {{this.path}}</code></pre>
+                    <pre><code class="bash">{{this.method}} {{this.path}}</code></pre>
 
                     {{> form-form basePath=../../basePath host=../../host }}
 
-
+                    <!--
                     {{#if parameters.header}}
                         <h3>Headers parameters</h3>
                         <table class="parameter-table pure-table pure-table-bordered">
@@ -164,17 +164,11 @@
                         </tbody>
                         </table>
                     {{/if}}
+                    -->
 
-
+                    <!--
                     {{#if responses.success}}
                         {{#each responses.success}}
-
-                            <!--
-                            <code>{{statusCode}}</code> {{description}}
-                            {{#if schema}}
-                                <pre><code class="json">{{{schema}}}</code></pre>
-                            {{/if}}
-                            -->
 
                             {{#if examples}}
 
@@ -195,7 +189,9 @@
                         {{/each}}
                     {{/if}}
 
+                    -->
 
+                    <!--
                     {{#if responses.errors}}
                         <h3>Possible error responses</h3>
                         <table class="parameter-table pure-table pure-table-bordered">
@@ -215,18 +211,13 @@
                         </tbody>
                         </table>
                     {{/if}}
+                    -->
 
 
-
-
+                    <!--
                     {{#if code}}
                         <h3>Example code snippet to make API request:</h3>
-                        <!--
-                        {{#each code}}
-                            <h3>{{name}}</h3>
-                            <pre><code class="{{format}}">{{{snippet}}}</code></pre>
-                        {{/each}}
-                        -->
+
 
                         <div class="tabs">
                         {{#each code}}
@@ -239,6 +230,7 @@
                         </div>
 
                     {{/if}}
+                    -->
 
 
                     {{#each text.after}}

@@ -28,10 +28,18 @@
             {{/each}}
         {{/if}}
 
-    <tr>
+        {{#if parameters.body}}
+                {{> form-row-body parameterType="body"}}
+        {{/if}}
+
+        <tr>
         <td colspan="5"><input type="submit"" value="Try" disabled="true"/></td>
         </tr>
 
     </table>
+
+    <pre class="response-headers"><code></code></pre>
+    <pre class="response-body"><code class="javascript"></code></pre>
+
 
 </form>

@@ -2,6 +2,34 @@
  Styles for plain theme of waypointer
  */
 
+button, input[type="submit"], input[type="button"], .button {
+  display: inline-block;
+  padding-top: 0.4em;
+  padding-right: 1em;
+  padding-left: 1em;
+  padding-bottom: 0.5em;
+  margin-bottom: 0;
+  font-weight: 200;
+  font-size: 1rem;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  background-color: #33a0e8;
+  color: #fff;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+ button:active, input[type="submit"]:active, input[type="button"]:active, .button:active {
+    background-color: #fc0599;
+ }
+
  body {
      background-color: fff;
      padding: 4em;
@@ -20,11 +48,18 @@
      font-weight: normal;
  }
 
- code {
+ .CodeMirror{
+     padding: 1em;
+     border: 1px solid #ccc;
+     border-radius: 4px;
+     font-size: 1.2em;
+ }
+
+ code, .CodeMirror{
      font-family: Monaco, Consolas, 'Courier New', monospace;
  }
 
- pre {
+ pre{
      padding: 1em;
      border: 1px solid #ccc;
      border-radius: 4px;

@@ -23,12 +23,17 @@ exports.register = function (plugin, options, next) {
         'cssLinks': [
             '/waypointer/assets/' + shortName + '/css/form.css',
             '/waypointer/assets/' + shortName + '/css/pure-min.css',
-            '/waypointer/assets/' + shortName + '/css/tomorrow.min.css'
+            '/waypointer/assets/' + shortName + '/css/tomorrow.min.css',
+            '/waypointer/assets/' + shortName + '/css/codemirror.css'
         ],
         'jsLinks': [
             '/waypointer/assets/' + shortName + '/js/form.js',
             '/waypointer/assets/' + shortName + '/js/highlight.min.js',
-            '/waypointer/assets/' + shortName + '/js/fetch-it.js'
+            '/waypointer/assets/' + shortName + '/js/es6-promise.js',
+            '/waypointer/assets/' + shortName + '/js/fetch.js',
+            '/waypointer/assets/' + shortName + '/js/beautify.js',
+            '/waypointer/assets/' + shortName + '/js/codemirror.js',
+            '/waypointer/assets/' + shortName + '/js/javascript.js'
         ]
     }
 

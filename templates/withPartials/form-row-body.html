@@ -1,0 +1,10 @@
+<tr>
+    <td><label>{{parameters.body.name}}</label></td>
+    <td colspan="4">
+        Editable:
+        {{#each parameters.body.examples}}
+            <!--<pre><code class="{{lowercase name}}" name="body-editor" data-parameter-type="body" data-mime-type={{mimeType}}>{{data}}</code></pre>-->
+            <textarea  class="{{lowercase name}}" name="body-content" data-parameter-type="body" data-mime-type={{mimeType}} rows="6">{{data}}</textarea>
+        {{/each}}
+    </td>
+</tr>
