@@ -94,7 +94,7 @@ function fireEndpoint(e) {
 
 
     // body with file
-    var fileInput = document.querySelector('input[type="file"]')
+    var fileInput = form.querySelector('input[type="file"]')
     if(fileInput){
         var data = new FormData()
         data.append('file', fileInput.files[0])
