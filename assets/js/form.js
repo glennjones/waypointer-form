@@ -112,7 +112,7 @@ function fireEndpoint(e) {
     delete options.query;
 
 
-
+    options.credentials = 'include';
 
 
     fetch('//' + urlTemplate, options)
