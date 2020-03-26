@@ -38,6 +38,7 @@
     "wreck": "7.0.0"
   },
   "dependencies": {
+    "@hapi/hoek": "^9.0.2",
     "node-js-beautify": "^0.1.0"
   },
   "readme": "# waypointer-plain\n\n## IN DEVELOPMENT - API NOT STABLE\n\nA plain html theme for the waypointer API auto documentation tool.\n\n![Image of the hub ui](https://raw.githubusercontent.com/glennjones/waypointer-plain/master/ui/plain-ui01.png)\n\n````bash\n$ npm install waypointer-plain\n```\n\n``` javascript\nconst Waypointer = require('waypointer');\n\nlet options = {\n    'swagger': {... a swagger json onject}\n    'themes': [{\n        theme: require('waypointer-plain')\n    }]\n}\n\nwaypointer.json( options, (err, waypointer) => {\n     // do something with json\n});\n\noptions.dist = 'a path for dist folder';\n\nwaypointer.buildDist( options, (err, waypointer) => {\n     // do something when dist is built\n});\n```\n\n## TODO\n* Add images of interface\n* Add description of parent project\n* Add grunt to to concat the js and css files\n* Add media queries - the orginal layout is designed for desktop\n* Add documentation of the key features in templates\n* Add documentation of forking the project and reuse of templates\n\n\n## Issues\nIf you find any issue please file here on github and I will try and fix them.",

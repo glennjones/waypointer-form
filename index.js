@@ -1,7 +1,7 @@
 'use strict';
 const Path = require("path");
 const Package = require('./package.json');
-const Hoek = require('Hoek');
+const Hoek = require('@hapi/hoek');
 
 exports.register = function (plugin, options, next) {
 
