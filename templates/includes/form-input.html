@@ -1,0 +1,30 @@
+
+{%if item.enum is defined%}
+    <select name="{{item.name}}" data-parameter-type={{parameterType}}>
+        {% set default = item.default %}
+        {% for enum in item.enum %}
+        <option value="{{enum}}" {%if enum === default%}selected{% endif %}>{{enum}}</option>
+        {% endfor %}
+    </select>
+{%else%}
+    {%if item.type === "boolean" %}
+        <select name="{{item.name}}" data-parameter-type="{{parameterType}}">
+            <option selected></option>
+            <option value="true">true</option>
+            <option value="false">false</option>
+        </select>
+    {% else %}
+        <input
+            {%if item.type === "file" %}
+              type="file"
+            {% else %}
+              type="text"
+              {% if item.dafault%}value="{{item.dafault}}" {% endif %}
+              {% if item.example%}placeholder="ie {{item.example}}" {% endif %}
+            {% endif %}
+            name="{{item.name}}"
+            {% if item.required%}required="true" {% endif %}
+            data-parameter-type={{parameterType}}
+        />
+    {% endif %}
+{% endif %}

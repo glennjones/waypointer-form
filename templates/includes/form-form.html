@@ -1,0 +1,65 @@
+
+
+<h2>Try it</h2>
+<form data-method="{{endpoint.method}}" data-url-template="{{host}}{{basePath}}{{endpoint.path}}">
+
+    <table class="parameter-table pure-table pure-table-bordered">
+        {%if endpoint.parameters.header%}
+            {% for header in endpoint.parameters.header %}
+                {% set parameterType = 'header' %}
+                {% includeWith "includes/form-row.html", with={
+                    item:header,
+                    parameterType: parameterType
+                } %}
+            {% endfor %}
+        {% endif %}
+
+        {%if endpoint.parameters.query%}
+            {% for query in endpoint.parameters.query %}
+                 {% set parameterType = 'query' %}
+                {% includeWith "includes/form-row.html", with={
+                    item:query,
+                    parameterType: parameterType
+                } %}
+            {% endfor %}
+        {% endif %}
+
+        {%if endpoint.parameters.path%}
+            {% for path in endpoint.parameters.path %}
+                 {% set parameterType = 'path' %}
+                {% includeWith "includes/form-row.html", with={
+                    item:path,
+                    parameterType: parameterType
+                } %}
+            {% endfor %}
+        {% endif %}
+
+        {%if endpoint.parameters.form%}
+            {% for form in endpoint.parameters.form %}
+                 {% set parameterType = 'form' %}
+                {% includeWith "includes/form-row.html", with={
+                    item:form,
+                    parameterType: parameterType
+                } %}
+            {% endfor %}
+        {% endif %}
+
+        {%if endpoint.parameters.body%}
+            {% set parameterType = 'body' %}
+            {% includeWith "includes/form-row-body.html", with={
+                item: endpoint.parameters.body,
+                parameterType: parameterType
+            } %}
+        {% endif %}
+
+        <tr>
+        <td colspan="5"><input type="submit" value="Try" disabled="true"/></td>
+        </tr>
+
+    </table>
+
+    <pre class="response-headers"><code></code></pre>
+    <pre class="response-body"><code class="javascript"></code></pre>
+
+
+</form>

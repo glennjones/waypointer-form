@@ -1,0 +1,9 @@
+<tr>
+    <td><label>{{item.name}}</label></td>
+    <td colspan="4">
+        Editable:
+        {% for example in item.examples %}
+            <textarea  class="{{example.name | lower }}" name="body-content" data-parameter-type="body" data-mime-type={{example.mimeType}} rows="6">{{example.data}}</textarea>
+        {% endfor %}
+    </td>
+</tr>

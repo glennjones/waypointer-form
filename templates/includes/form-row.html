@@ -1,0 +1,33 @@
+
+<tr>
+    <td>{{item.name}}</td>
+    <td>{% includeWith "includes/form-input.html", with={
+            item:item,
+            parameterType: parameterType
+    } %} </td>
+    <td>
+
+        {%if item.required%}<strong>Required</strong> {% endif %}
+        {{item.description}}.
+
+        {%if item['x-constraint'].greater > -1 %} Min: <code>{{item['x-constraint'].greater + 1}}</code> {% endif %}
+        {%if item['x-constraint'].length%} Required length: <code>{{item['x-constraint'].length}}</code> {% endif %}
+
+        {%if item.maximum%} Max: <code>{{item.maximum}}</code> {% endif %}
+        {%if item.maxLength%} Max characters: <code>{{item.maxLength}}</code> {% endif %}
+
+        {%if item.default%} Default value is:  <code>{{item.default}}</code>. {% endif %}
+
+        {%if item.enum%}
+        <div>Excepted values:
+            <ul>
+                {% for enum in item.enum %}
+                <li><code>{{enum}}</code></li>{% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </td>
+    <td>{{parameterType}}</td>
+    <td>{{item.type}}</td>
+
+</tr>

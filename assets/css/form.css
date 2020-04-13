@@ -150,3 +150,10 @@ button, input[type="submit"], input[type="button"], .button {
  .tabs input[type=radio]:checked + label + div {
      display: block;
  }
+
+
+ #bearer-token-input{
+    width: 20em;
+    margin-left: 0.5em;
+    padding: 0.5em;
+}

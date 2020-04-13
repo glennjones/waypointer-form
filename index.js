@@ -1,7 +1,7 @@
 'use strict';
 const Path = require("path");
 const Package = require('./package.json');
-const Hoek = require('@hapi/hoek');
+const Hoek = require('Hoek');
 
 exports.register = function (plugin, options, next) {
 
@@ -33,7 +33,8 @@ exports.register = function (plugin, options, next) {
             '/waypointer/assets/' + shortName + '/js/fetch.js',
             '/waypointer/assets/' + shortName + '/js/beautify.js',
             '/waypointer/assets/' + shortName + '/js/codemirror.js',
-            '/waypointer/assets/' + shortName + '/js/javascript.js'
+            '/waypointer/assets/' + shortName + '/js/javascript.js',
+            '/waypointer/assets/' + shortName + '/js/js-cookie.js'
         ]
     }
 

@@ -2,6 +2,9 @@
    Highlight code for plain theme of waypointer
 */
 
+var bearerToken = null;
+var bearerTokenInput = null;
+
 addEventListener('load', function () {
     var preList = nodesToArray(document.querySelectorAll('pre code'));
     preList.forEach(function (pre) {
@@ -21,8 +24,26 @@ addEventListener('load', function () {
         textArea.cm = CodeMirror.fromTextArea(textArea);
     });
 
+    bearerToken = Cookies.get('bearer-token')
+    bearerTokenInput = document.querySelector('#bearer-token-input');
+    if(bearerTokenInput){
+        if(bearerToken ){
+            bearerTokenInput.value = bearerToken;
+        }
+        bearerTokenInput.addEventListener('input', updateBearerToken, false);
+    }
 
 });
+
+
+function updateBearerToken(){
+    if(bearerTokenInput && bearerTokenInput.value !== ''){
+        bearerToken = bearerTokenInput.value;
+        Cookies.set('bearer-token', bearerToken)
+    }else{
+        bearerToken = null;
+    }
+}
 
 
 function fireEndpoint(e) {
@@ -38,6 +59,9 @@ function fireEndpoint(e) {
         headers: {},
         query: {},
         form: {}
+    }
+    if(bearerToken){
+        options.headers['Authorization'] = 'Bearer ' + bearerToken;
     }
 
     inputList.forEach(function (input) {
