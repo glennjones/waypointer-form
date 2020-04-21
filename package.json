@@ -13,7 +13,8 @@
   ],
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev-debug": "node --inspect-brk=9229 ./bin/test-server.js"
   },
   "repository": {
     "type": "git",
@@ -26,29 +27,17 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "inert": "^3.2.0",
-    "vision": "^4.0.1",
-    "handlebars": "^4.0.5",
-    "handlebars-helpers-dev": "github:glennjones/handlebars-helpers-dev",
-    "blipp": "^2.3.0",
-    "good": "^6.5.0",
-    "good-console": "^5.3.0",
-    "hapi": "^13.0.0",
-    "hoek": "^3.0.4",
-    "wreck": "7.0.0"
+    "@hapi/code": "^8.0.1",
+    "@hapi/hapi": "^19.1.1",
+    "@hapi/inert": "^6.0.1",
+    "@hapi/lab": "^22.0.4",
+    "@hapi/vision": "^6.0.0",
+    "@hapi/wreck": "^17.0.0",
+    "blipp": "^4.0.1",
+    "nunjucks": "^3.2.1",
+    "@glennjones/nunjucks-tools": "0.0.2"
   },
   "dependencies": {
-    "node-js-beautify": "^0.1.0"
-  },
-  "readme": "# waypointer-plain\n\n## IN DEVELOPMENT - API NOT STABLE\n\nA plain html theme for the waypointer API auto documentation tool.\n\n![Image of the hub ui](https://raw.githubusercontent.com/glennjones/waypointer-plain/master/ui/plain-ui01.png)\n\n````bash\n$ npm install waypointer-plain\n```\n\n``` javascript\nconst Waypointer = require('waypointer');\n\nlet options = {\n    'swagger': {... a swagger json onject}\n    'themes': [{\n        theme: require('waypointer-plain')\n    }]\n}\n\nwaypointer.json( options, (err, waypointer) => {\n     // do something with json\n});\n\noptions.dist = 'a path for dist folder';\n\nwaypointer.buildDist( options, (err, waypointer) => {\n     // do something when dist is built\n});\n```\n\n## TODO\n* Add images of interface\n* Add description of parent project\n* Add grunt to to concat the js and css files\n* Add media queries - the orginal layout is designed for desktop\n* Add documentation of the key features in templates\n* Add documentation of forking the project and reuse of templates\n\n\n## Issues\nIf you find any issue please file here on github and I will try and fix them.",
-  "readmeFilename": "README.md",
-  "gitHead": "570a926a87366ac98fea06ccbd5fdc5d39011323",
-  "bugs": {
-    "url": "https://github.com/glennjones/waypointer-form/issues"
-  },
-  "homepage": "https://github.com/glennjones/waypointer-form#readme",
-  "_id": "waypointer-form@0.1.0",
-  "_shasum": "faaadbdb30883dafd7dce59143a100b3ca97992c",
-  "_from": "glennjones/waypointer-form",
-  "_resolved": "git://github.com/glennjones/waypointer-form.git#570a926a87366ac98fea06ccbd5fdc5d39011323"
+    "@hapi/hoek": "^9.0.4"
+  }
 }

@@ -1,4 +1,4 @@
-MIT License - waypointer-plain
+MIT License - waypointer-form
 
 Copyright (c) 2016 Glenn Jones
 

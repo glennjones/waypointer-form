@@ -1,136 +1,128 @@
-'use strict';
+
 const Path = require("path");
-const Hapi = require('hapi');
-const Inert = require('inert');
-const Vision = require('vision');
 const Blipp = require('blipp');
-const Good = require('good');
-const Hoek = require('Hoek');
+const Hapi = require('@hapi/hapi');
+const Inert = require('@hapi/inert');
+const Vision = require('@hapi/vision');
+const Hoek = require('@hapi/Hoek');
+const Nunjucks = require('nunjucks');
+const NunjucksTools = require('@glennjones/nunjucks-tools');
 const WaypointerJSON = require('../bin/waypointer.json');
 const Theme = require('../index.js');
-const Handlebars = require('handlebars');
-const HandlebarsHalpers = require('handlebars-helpers')({
-  handlebars: Handlebars
-});
-
 
 
 const assetDirPath = Path.join(__dirname, '..' + Path.sep + 'assets');
-const templateDirPath = Path.join(__dirname, '..' + Path.sep + 'templates');
-
-
-const goodOptions = {
-    reporters: [{
-        reporter: require('good-console'),
-        events: { log: '*', response: '*' }
-    }]
-};
-
-
-let server = new Hapi.Server();
-server.connection({
-    host: 'localhost',
-    port: 3016,
-    routes: { cors: true }
-});
-
-
-
-server.register([
-    Inert,
-    Vision,
-    Blipp,
-    {
-        register: Good,
-        options: goodOptions
-    }], (err) => {
-
-        server.start((err) => {
-            if (err) {
-                console.log(err);
-            } else {
-                console.log('Server running at:', server.info.uri);
-            }
-        });
-    });
-
-
-// add templates with paths
-// the paths are for testing, within the theme they may be different
-server.views({
-    engines: {
-        html: {
-            module: Handlebars
-        }
-    },
-    path: templateDirPath,
-    partialsPath: templateDirPath + Path.sep + 'withPartials',
-    helpersPath: templateDirPath + Path.sep + 'helpers',
-    isCached: false,
-    compileOptions: {preventIndent: true}
-});
 
 
 // function to get theme data as it would be provide if we used code as plug-in
-const getThemeData = function(server, option, callback){
-    Theme.register(server, {}, (theme) => {
-       // delete those items which would not be pass into template context
-        delete theme.templatePath;
-        delete theme.partialsPath;
-        delete theme.halpersPath;
-        delete theme.groupPages;
-        delete theme.groupItemPages;
-        delete theme.assetPath;
+async function getThemeData(server){
+    return new Promise((resolve) => {
+        Theme.register(server, {}, (theme) => {
+            // delete those items which would not be pass into template context
+             delete theme.templatePath;
+             delete theme.partialsPath;
+             delete theme.halpersPath;
+             delete theme.groupPages;
+             delete theme.groupItemPages;
+             delete theme.assetPath;
 
-        callback(null, theme);
+             resolve(theme);
+         });
     });
 }
 
 
 
-server.route([{
-    method: 'GET',
-    path: '/',
-    config: {
-        handler: (request, reply) => {
-            reply.redirect('/waypointer/form');
-        }
+
+(async () => {
+    const server = await new Hapi.Server({
+        host: 'localhost',
+        port: 3025,
+    });
+
+    await server.register([
+        Inert,
+        Vision,
+        Blipp
+    ]);
+
+    try {
+        await server.start();
+        console.log('Server running at:', server.info.uri);
+    } catch(err) {
+        console.log(err);
     }
-},{
-    method: 'GET',
-    path: '/waypointer/form',
-    config: {
-        handler: (request, reply) => {
-            getThemeData(request.server, {}, (err,theme) => {
+
+    let noCache = true
+    server.views({
+        path: Path.join(__dirname, '../templates'),
+        engines: {
+        html: {
+            compile: (src, options) => {
+                const template = Nunjucks.compile(src, options.environment);
+                return  (context) => {
+                    return template.render(context);
+                };
+            },
+            prepare:  (options, next) => {
+
+                let env = Nunjucks.configure(options.path, { watch: noCache, noCache: noCache });
+                //env.addExtension('with', new NunjucksTools.withTag(env));
+                env.addExtension('withInclude', new NunjucksTools.includeWith(env));
+                options.compileOptions.environment = env;
+
+                return next();
+            }
+        }
+        },
+        isCached: false,
+    });
+
+
+
+    server.route([{
+        method: 'GET',
+        path: '/',
+        config: {
+            handler: function (request, h) {
+                return h.redirect('/waypointer/form');
+            }
+        }
+    },{
+        method: 'GET',
+        path: '/waypointer/form',
+        config: {
+            handler: async (request, h) => {
+
+                const theme = await getThemeData(request.server);
                 let out = Hoek.clone(WaypointerJSON);
                 out.theme = theme;
                 out.theme.pathRoot = '/waypointer/form'
-                reply.view('form-index.html', out);
-            });
+                return h.view('form-index.html', out);
+            }
         }
-    }
-},{
-    method: 'GET',
-    path: '/waypointer.json',
-    config: {
-        handler: (request, reply) => {
-            getThemeData(request.server,{}, (err,theme) => {
+    },{
+        method: 'GET',
+        path: '/waypointer.json',
+        config: {
+            handler: async (request, h) => {
+
+                const theme = await getThemeData(request.server);
                 let out = Hoek.clone(WaypointerJSON);
                 out.theme = theme;
-                reply(out).type('application/json; charset=utf-8');
-            });
+                return h.response(out).type('application/json; charset=utf-8')
+            }
         }
-    }
-},{
-    method: 'GET',
-    path: '/waypointer/assets/form/{path*}',
-    handler: {
-        directory: {
-            path: assetDirPath,
-            listing: false,
-            index: true
+    },{
+        method: 'GET',
+        path: '/waypointer/assets/form/{path*}',
+        handler: {
+            directory: {
+                path: assetDirPath,
+                listing: false,
+                index: true
+            }
         }
-    }
-}]);
-
+    }]);
+})();
 
