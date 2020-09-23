@@ -38,6 +38,6 @@
     "@glennjones/nunjucks-tools": "0.0.2"
   },
   "dependencies": {
-    "@hapi/hoek": "^9.0.4"
+    "@hapi/hoek": "^9.1.0"
   }
 }
